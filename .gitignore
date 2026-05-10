@@ -73,3 +73,6 @@ __pycache__/
 
 # SQLite database
 server/grillme.db
+server/db/*.db
+server/db/*.db-shm
+server/db/*.db-wal

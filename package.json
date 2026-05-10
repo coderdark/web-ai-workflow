@@ -1,0 +1,18 @@
+{
+  "name": "apextuts",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "npm run dev --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "build": "npm run build --prefix client",
+    "seed": "npm run seed --prefix server",
+    "test": "npm run test --prefix client && npm run test --prefix server",
+    "test:client": "npm run test --prefix client",
+    "test:server": "npm run test --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
