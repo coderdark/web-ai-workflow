@@ -20,19 +20,19 @@ export default function ClassCatalog() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-bold text-stone-900 mb-2">All Classes</h1>
-      <p className="text-stone-500 mb-10">Browse our full library of AI courses.</p>
+      <h1 className="text-3xl font-bold text-slate-100 mb-2">All Classes</h1>
+      <p className="text-slate-400 mb-10">Browse our full library of AI courses.</p>
 
       {loading && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-44 bg-stone-100 rounded-xl animate-pulse" />
+            <div key={i} className="h-44 bg-slate-700 rounded-xl animate-pulse" />
           ))}
         </div>
       )}
 
       {!loading && classes.length === 0 && (
-        <p className="text-stone-500 text-center py-20">No classes available yet. Check back soon!</p>
+        <p className="text-slate-400 text-center py-20">No classes available yet. Check back soon!</p>
       )}
 
       {!loading && classes.length > 0 && (

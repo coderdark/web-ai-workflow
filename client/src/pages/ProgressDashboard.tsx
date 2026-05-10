@@ -53,9 +53,9 @@ export default function ProgressDashboard() {
   if (loading) {
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="h-8 bg-stone-100 rounded w-1/3 animate-pulse mb-8" />
+        <div className="h-8 bg-slate-700 rounded w-1/3 animate-pulse mb-8" />
         <div className="space-y-4">
-          {[1, 2].map((i) => <div key={i} className="h-28 bg-stone-100 rounded-xl animate-pulse" />)}
+          {[1, 2].map((i) => <div key={i} className="h-28 bg-slate-700 rounded-xl animate-pulse" />)}
         </div>
       </div>
     );
@@ -63,15 +63,15 @@ export default function ProgressDashboard() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-bold text-stone-900 mb-2">My Progress</h1>
-      <p className="text-stone-500 mb-10">Track your learning journey.</p>
+      <h1 className="text-3xl font-bold text-slate-100 mb-2">My Progress</h1>
+      <p className="text-slate-400 mb-10">Track your learning journey.</p>
 
       {enrolled.length === 0 && (
         <div className="text-center py-20">
-          <p className="text-stone-500 mb-4">You haven't started any classes yet.</p>
+          <p className="text-slate-400 mb-4">You haven't started any classes yet.</p>
           <Link
             to="/classes"
-            className="inline-block bg-amber-600 hover:bg-amber-700 text-white font-medium px-6 py-2.5 rounded-lg transition-colors"
+            className="inline-block bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-2.5 rounded-lg transition-colors"
           >
             Browse Classes →
           </Link>
@@ -82,19 +82,19 @@ export default function ProgressDashboard() {
         {enrolled.map(({ cls, completedLessons, completionPct, status, firstIncompleteLesson }) => {
           const totalLessons = cls.lessons?.length ?? 0;
           return (
-            <div key={cls.id} className="bg-white rounded-xl border border-stone-200 p-6">
+            <div key={cls.id} className="bg-slate-700 rounded-xl border border-slate-600 p-6">
               <div className="flex items-start justify-between gap-3 mb-1">
-                <h2 className="font-semibold text-stone-900">{cls.title}</h2>
+                <h2 className="font-semibold text-slate-100">{cls.title}</h2>
                 <div className="flex items-center gap-2 flex-shrink-0">
                   <DifficultyBadge difficulty={cls.difficulty} />
                   {status === 'completed' && (
-                    <span className="bg-green-100 text-green-700 text-xs font-medium px-2 py-0.5 rounded-full">
+                    <span className="bg-emerald-900 text-emerald-300 text-xs font-medium px-2 py-0.5 rounded-full">
                       ✓ Completed
                     </span>
                   )}
                 </div>
               </div>
-              <p className="text-sm text-stone-500 mb-4">
+              <p className="text-sm text-slate-400 mb-4">
                 {completedLessons.length} of {totalLessons} lessons complete
               </p>
 
@@ -103,7 +103,7 @@ export default function ProgressDashboard() {
               {status !== 'completed' && firstIncompleteLesson && (
                 <Link
                   to={`/classes/${cls.id}/lessons/${firstIncompleteLesson}`}
-                  className="inline-block mt-4 text-sm font-medium text-amber-700 hover:text-amber-800 transition-colors"
+                  className="inline-block mt-4 text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors"
                 >
                   Continue →
                 </Link>

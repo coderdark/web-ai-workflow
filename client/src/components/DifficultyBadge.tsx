@@ -3,9 +3,9 @@ interface Props {
 }
 
 const styles: Record<Props['difficulty'], string> = {
-  Beginner: 'bg-green-100 text-green-800',
-  Intermediate: 'bg-amber-100 text-amber-800',
-  Advanced: 'bg-red-100 text-red-800',
+  Beginner:     'bg-emerald-900 text-emerald-300',
+  Intermediate: 'bg-indigo-900 text-indigo-300',
+  Advanced:     'bg-red-900 text-red-300',
 };
 
 export default function DifficultyBadge({ difficulty }: Props) {

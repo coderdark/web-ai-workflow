@@ -23,7 +23,7 @@ There is no login. Student progress is stored in `localStorage` keyed to an anon
 | Layer | Technology |
 |---|---|
 | Frontend | Vite + React + TypeScript |
-| Styling | TailwindCSS (warm earthy palette) |
+| Styling | TailwindCSS (dark slate + indigo palette) |
 | State management | Zustand with `persist` middleware |
 | Routing | React Router v6 |
 | Markdown rendering | react-markdown + remark-gfm |
@@ -111,6 +111,24 @@ This project was planned, designed, and implemented entirely using Claude Code w
    │  Output:  Full working application                   │
    │           30 passing tests, 0 TypeScript errors      │
    └──────────────────────────────────────────────────────┘
+
+          ↑ Initial MVP build ends here.
+          After launch, new features follow a shorter loop:
+
+   ┌──────────────────────────────────────────────────────┐
+   │  ITERATIVE LOOP — /write-story → /implement-stories  │
+   │                                                      │
+   │  Purpose: Capture new feature requests as proper     │
+   │  stories with acceptance criteria, then implement    │
+   │  them the same disciplined way as the initial MVP.   │
+   │                                                      │
+   │  Input:   Natural language feature request           │
+   │  Output:  planning/stories/story-NNN.md  (previewed, │
+   │           confirmed by user, saved)                  │
+   │           ↓                                          │
+   │           Implemented via /implement-stories         │
+   │           with TDD, marked done on green tests       │
+   └──────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -171,6 +189,8 @@ The `/grill-me` skill acts as a relentless interviewer. It works through the ide
  Q12  What is the visual design direction?
       Options:  Clean white + accent | Dark mode | Soft neutral earthy tones
       Decided:  Soft neutral ← warm off-white + earthy (stone/amber Tailwind palette)
+      Updated:  Post-MVP STORY-012 replaced stone/amber with dark slate + indigo
+                for a more professional look (see Iterative Phases below)
 
  Q13  How is lesson content authored and stored?
       Options:  Markdown as TEXT in SQLite | HTML | Structured JSON blocks
@@ -250,7 +270,7 @@ With every design decision locked in, the `/create-prd` skill converts the grill
 
 #### Story Dependency Graph
 
-Each of the 10 stories is an independent file. The `/implement-stories` skill uses the dependency graph to determine build order.
+Each story is an independent file. The `/implement-stories` skill uses the dependency graph to determine build order.
 
 ```
   STORY-001  Project Scaffold
@@ -276,9 +296,15 @@ Each of the 10 stories is an independent file. The `/implement-stories` skill us
                                                         │
                                                         ▼
                                              STORY-008  Lesson Viewer
-                                                        │
-                                                        ▼
-                                             STORY-009  Progress Dashboard
+                                                        │           │
+                                                        ▼           ▼
+                                             STORY-009  Progress  STORY-011
+                                             Dashboard   Mark as Complete
+                                                                   Button State
+                                                                    │
+                                                              STORY-012
+                                                              Dark Theme
+                                                       (depends on 001–010)
 ```
 
 #### What Each Story Contains
@@ -425,7 +451,80 @@ The `/implement-stories` skill reads every story file in `planning/stories/`, re
  └── ProgressBar.test.tsx              4 tests
      └── aria attributes · clamping · percentage display
 
- TOTAL: 30 tests · 30 passing · 0 TypeScript errors
+ TOTAL (after MVP): 30 tests · 30 passing · 0 TypeScript errors
+ TOTAL (after STORY-011/012): 38 tests · 38 passing · 0 TypeScript errors
+```
+
+---
+
+### Iterative Phases — `/write-story` + `/implement-stories`
+
+After the MVP shipped, new features were added using a tighter loop. Instead of going through the full grill-me → PRD cycle, individual feature requests are captured with `/write-story` and then implemented immediately with `/implement-stories`.
+
+**Why use `/write-story` for post-MVP features?** It enforces the same INVEST criteria and acceptance-criteria discipline as the original stories — the implementation phase still has every piece of information it needs to work autonomously — without the overhead of a full PRD session for a single focused change.
+
+#### `/write-story` — Drafting a Story from a Plain English Request
+
+The skill interviews the user if any detail is ambiguous, then previews the full story for approval before saving it. The output is an INVEST-format story file in `planning/stories/` with all the same fields as the PRD-generated stories.
+
+```
+ User says:   "I want the Mark as Complete button to become disabled
+               with a green background and checkmark when clicked."
+
+ /write-story →  Previews story-011-mark-complete-button-state.md
+                 User approves → file saved
+
+ /implement-stories → RED tests → implementation → GREEN tests
+                   → story-011 status: done
+```
+
+```
+ User says:   "Change the theme to use indigo and darker colors
+               to look professional."
+
+ /write-story →  Previews story-012-dark-indigo-theme.md
+                 User approves → file saved
+
+ /implement-stories → Updates 14 files across client
+                   → All 38 tests pass
+                   → story-012 status: done
+```
+
+#### Stories Added Post-MVP
+
+```
+  (STORY-001 … 010  — initial MVP, see above)
+       │
+       ├──────────────────────────────────────────────────┐
+       ▼                                                  ▼
+  STORY-011  Mark as Complete Button State         STORY-012  Dark Theme
+  ─────────────────────────────────────────        ────────────────────────────────────
+  Button disabled on click                         slate-800 page background
+  Green background (bg-green-500)                  slate-700 cards
+  Checkmark visible (text-green-900)               slate-600 borders
+  Text changes to "Completed"                      indigo-600 primary actions
+  Pre-completed state on page load                 indigo-400 links / accent
+  8 new tests in LessonViewer.test.tsx             prose-invert for markdown
+                                                   Dark difficulty badges
+                                                   14 files updated
+```
+
+#### Updated Test Suite After Post-MVP Stories
+
+```
+ server/__tests__/api.test.js          7 tests   (unchanged)
+
+ client/src/__tests__/
+ ├── useProgressStore.test.ts          9 tests   (unchanged)
+ ├── ClassCard.test.tsx                7 tests   (unchanged)
+ ├── DifficultyBadge.test.tsx          3 tests   (unchanged)
+ ├── ProgressBar.test.tsx              4 tests   (unchanged)
+ └── LessonViewer.test.tsx             8 tests   ← added by STORY-011
+     └── button state · disabled on click · green bg ·
+         text change · checkmark · pre-completed load ·
+         single element (no div swap)
+
+ TOTAL: 38 tests · 38 passing · 0 TypeScript errors
 ```
 
 ---
@@ -433,34 +532,40 @@ The `/implement-stories` skill reads every story file in `planning/stories/`, re
 ### Full Workflow at a Glance
 
 ```
- INPUT                    SKILL              OUTPUT
+ INPUT                      SKILL                OUTPUT
  ─────────────────────────────────────────────────────────────────────
 
- idea.md                  /grill-me          grill-me-2026-05-09.md
- (raw concept)                               (15 decisions, data model,
-                                              localStorage schema,
-                                              architecture summary)
+ idea.md                    /grill-me            grill-me-2026-05-09.md
+ (raw concept)                                   (15 decisions, data model,
+                                                  localStorage schema,
+                                                  architecture summary)
 
- grill-me-2026-05-09.md   /create-prd        PRD-2026-05-09.md
- (resolved decisions)                        story-001.md
-                                             story-002.md
-                                             story-003.md
-                                             story-004.md
-                                             story-005.md
-                                             story-006.md
-                                             story-007.md
-                                             story-008.md
-                                             story-009.md
-                                             story-010.md
+ grill-me-2026-05-09.md     /create-prd          PRD-2026-05-09.md
+ (resolved decisions)                            story-001.md … story-010.md
 
- planning/stories/*.md    /implement-stories client/  (React app)
- (10 stories, all AFK)                       server/  (Express API)
-                                             30 passing tests
-                                             0 TypeScript errors
-                                             1 seeded real class
+ planning/stories/*.md      /implement-stories   client/ (React app)
+ (10 MVP stories, all AFK)                       server/ (Express API)
+                                                 30 passing tests
+                                                 0 TypeScript errors
+                                                 1 seeded real class
+
+ — iterative loop: post-MVP features ——————————————————————————————————
+
+ "Mark as Complete button    /write-story         story-011.md
+  disabled + green on click"                      (previewed + approved)
+
+ story-011.md               /implement-stories   LessonViewer button state
+                                                  8 new tests — all green
+
+ "Professional dark theme    /write-story         story-012.md
+  with indigo accent"                             (previewed + approved)
+
+ story-012.md               /implement-stories   14 files updated
+                                                  slate-800 bg, indigo-600
+                                                  38 total tests — all green
 
  ─────────────────────────────────────────────────────────────────────
- 3 commands · 3 skills · idea → working application
+ 4 skills · idea → working application → iterative post-MVP features
 ```
 
 ---
@@ -524,3 +629,4 @@ web-ai-workflow/
 - **Admin UI** — simple form to create/edit classes and lessons without touching the DB directly
 - **Difficulty filtering** — catalog filter using Zustand store (already designed for it)
 - **Certificates** — completion certificates once auth provides a persistent identity
+- **Dark mode toggle** — theme is now dark by default; a toggle could offer a light alternative

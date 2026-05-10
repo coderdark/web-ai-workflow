@@ -22,31 +22,31 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-amber-50 to-stone-100 border-b border-stone-200">
+      <section className="bg-gradient-to-br from-indigo-900 to-slate-800 border-b border-slate-700">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
-          <p className="text-amber-700 font-medium text-sm mb-3 uppercase tracking-wide">ApexTuts</p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-stone-900 leading-tight mb-4">
+          <p className="text-indigo-400 font-medium text-sm mb-3 uppercase tracking-wide">ApexTuts</p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-slate-100 leading-tight mb-4">
             AI Education for Everyone
           </h1>
-          <p className="text-xl text-stone-600 mb-10 max-w-xl">
+          <p className="text-xl text-slate-400 mb-10 max-w-xl">
             No tech background required. Learn artificial intelligence at your own pace with practical, plain-language lessons.
           </p>
 
           {loading && (
-            <div className="h-10 w-48 bg-stone-200 rounded-lg animate-pulse" />
+            <div className="h-10 w-48 bg-slate-700 rounded-lg animate-pulse" />
           )}
 
           {!loading && featured && (
-            <div className="bg-white rounded-2xl border border-stone-200 p-6 max-w-lg shadow-sm">
+            <div className="bg-slate-700 rounded-2xl border border-slate-600 p-6 max-w-lg shadow-lg">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs text-amber-700 font-medium uppercase tracking-wide">Featured Class</span>
+                <span className="text-xs text-indigo-400 font-medium uppercase tracking-wide">Featured Class</span>
                 <DifficultyBadge difficulty={featured.difficulty} />
               </div>
-              <h2 className="text-xl font-semibold text-stone-900 mb-2">{featured.title}</h2>
-              <p className="text-stone-600 text-sm mb-5">{featured.description}</p>
+              <h2 className="text-xl font-semibold text-slate-100 mb-2">{featured.title}</h2>
+              <p className="text-slate-400 text-sm mb-5">{featured.description}</p>
               <Link
                 to={`/classes/${featured.id}`}
-                className="inline-block bg-amber-600 hover:bg-amber-700 text-white font-medium px-6 py-2.5 rounded-lg transition-colors"
+                className="inline-block bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-2.5 rounded-lg transition-colors"
               >
                 Start Learning
               </Link>
@@ -54,9 +54,9 @@ export default function HomePage() {
           )}
 
           {!loading && !featured && (
-            <div className="text-stone-500">
+            <div className="text-slate-400">
               No featured class available yet.{' '}
-              <Link to="/classes" className="text-amber-700 hover:underline">Browse all classes →</Link>
+              <Link to="/classes" className="text-indigo-400 hover:underline">Browse all classes →</Link>
             </div>
           )}
         </div>
@@ -65,8 +65,8 @@ export default function HomePage() {
       {/* Browse section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold text-stone-900">Browse Classes</h2>
-          <Link to="/classes" className="text-sm text-amber-700 hover:underline font-medium">
+          <h2 className="text-2xl font-bold text-slate-100">Browse Classes</h2>
+          <Link to="/classes" className="text-sm text-indigo-400 hover:underline font-medium">
             View all →
           </Link>
         </div>
@@ -74,7 +74,7 @@ export default function HomePage() {
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-40 bg-stone-100 rounded-xl animate-pulse" />
+              <div key={i} className="h-40 bg-slate-700 rounded-xl animate-pulse" />
             ))}
           </div>
         ) : (
@@ -83,13 +83,13 @@ export default function HomePage() {
               <Link
                 key={cls.id}
                 to={`/classes/${cls.id}`}
-                className="block bg-white rounded-xl border border-stone-200 p-5 hover:border-amber-300 hover:shadow-md transition-all"
+                className="block bg-slate-700 rounded-xl border border-slate-600 p-5 hover:border-indigo-500 hover:shadow-md transition-all"
               >
                 <div className="flex items-start justify-between gap-2 mb-2">
-                  <h3 className="font-semibold text-stone-900 leading-snug">{cls.title}</h3>
+                  <h3 className="font-semibold text-slate-100 leading-snug">{cls.title}</h3>
                   <DifficultyBadge difficulty={cls.difficulty} />
                 </div>
-                <p className="text-sm text-stone-600 line-clamp-2">{cls.description}</p>
+                <p className="text-sm text-slate-400 line-clamp-2">{cls.description}</p>
               </Link>
             ))}
           </div>

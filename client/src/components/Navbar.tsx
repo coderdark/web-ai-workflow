@@ -17,15 +17,15 @@ export default function Navbar() {
   const linkClass = (to: string) =>
     `text-sm font-medium transition-colors ${
       isActive(to)
-        ? 'text-amber-700 border-b-2 border-amber-600 pb-0.5'
-        : 'text-stone-600 hover:text-amber-700'
+        ? 'text-indigo-400 border-b-2 border-indigo-500 pb-0.5'
+        : 'text-slate-400 hover:text-indigo-400'
     }`;
 
   return (
-    <nav className="bg-stone-100 border-b border-stone-200">
+    <nav className="bg-slate-900 border-b border-slate-700">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="text-xl font-bold text-amber-700 tracking-tight">
+          <Link to="/" className="text-xl font-bold text-indigo-400 tracking-tight">
             ApexTuts
           </Link>
 
@@ -40,7 +40,7 @@ export default function Navbar() {
 
           {/* Hamburger */}
           <button
-            className="sm:hidden p-2 rounded text-stone-600 hover:text-amber-700"
+            className="sm:hidden p-2 rounded text-slate-400 hover:text-indigo-400"
             onClick={() => setMenuOpen((o) => !o)}
             aria-label="Toggle menu"
           >
