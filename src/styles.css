@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #e6eef5;
+  --ink: #0a1a24;
+}
+
+body {
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  background:
+    radial-gradient(circle at 8% 8%, #b8e4da 0%, transparent 38%),
+    radial-gradient(circle at 90% 0%, #bfd6f7 0%, transparent 36%),
+    radial-gradient(circle at 50% 120%, #c9d9ea 0%, transparent 45%),
+    var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+h1, h2, h3, .brand-font {
+  font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
+}
