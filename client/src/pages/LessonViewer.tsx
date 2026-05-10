@@ -109,7 +109,7 @@ export default function LessonViewer() {
         <div className="flex-1 min-w-0">
           <h1 className="text-2xl sm:text-3xl font-bold text-slate-100 mb-8">{lesson.title}</h1>
 
-          <div className="prose prose-invert max-w-none mb-12">
+          <div className="lesson-body max-w-none mb-12">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{lesson.content}</ReactMarkdown>
           </div>
 

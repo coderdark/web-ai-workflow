@@ -41,12 +41,15 @@ Imagine teaching a child to recognize a cat. You show them hundreds of pictures 
 ### The Three Big Ideas Behind AI
 
 **1. Data**
+
 AI learns from data — enormous amounts of it. The more high-quality data an AI system has access to, the better it can learn.
 
 **2. Algorithms**
+
 An algorithm is simply a set of instructions. AI uses special algorithms (called machine learning algorithms) that allow it to find patterns in data without being told exactly what to look for.
 
 **3. Computing Power**
+
 Modern AI requires a lot of processing power — the kind that only became widely available in the last decade thanks to advances in hardware.
 
 ### AI Is Not Magic
@@ -76,29 +79,37 @@ In the last lesson, we learned that AI recognizes patterns in data. But how exac
 When we say an AI "learns," we mean it goes through a process called **training**. Here's how it works:
 
 **Step 1: Feed it data**
+
 You start by giving the AI a large collection of examples. If you're building an AI that identifies spam emails, you'd give it thousands of emails labeled "spam" or "not spam."
 
 **Step 2: The AI makes guesses**
+
 The AI looks at each example and makes a prediction. At first, it guesses randomly — and it gets a lot wrong.
 
 **Step 3: Measure the error**
+
 After each guess, the system measures how wrong the AI was. This measurement is called the **loss** or **error**.
 
 **Step 4: Adjust and improve**
+
 Here's the clever part: the AI automatically adjusts its internal settings (called **weights**) to reduce the error on the next guess. This adjustment process is called **backpropagation**.
 
 **Step 5: Repeat millions of times**
+
 This cycle of guess → measure → adjust repeats millions of times. Gradually, the AI gets better at making accurate predictions.
 
 ### Three Types of Machine Learning
 
 **Supervised Learning**
+
 The AI learns from labeled examples — data where the correct answer is provided. Example: teaching an AI to detect cats by showing it millions of labeled cat photos.
 
 **Unsupervised Learning**
+
 The AI finds patterns in data without being told what to look for. Example: grouping customers into segments based on shopping behavior.
 
 **Reinforcement Learning**
+
 The AI learns by trial and error, receiving rewards for correct actions and penalties for wrong ones. Example: teaching an AI to play chess by having it play millions of games.
 
 ### A Real-World Example: Email Spam Filter
@@ -127,18 +138,23 @@ Alarm apps that learn your sleep patterns. News feeds that show you stories base
 ### AI You Use Every Day
 
 **Search Engines**
+
 When you type a question into Google, AI doesn't just match keywords — it tries to understand the *intent* behind your search and rank results by how useful they're likely to be for *you specifically*.
 
 **Recommendation Systems**
+
 Netflix, Spotify, YouTube, Amazon — all of these use AI to suggest what you might want to watch, listen to, or buy next. These systems analyze your past behavior and compare it to millions of other users to find patterns.
 
 **Voice Assistants**
+
 Siri, Alexa, Google Assistant — these use a branch of AI called **Natural Language Processing (NLP)** to understand what you're saying and respond helpfully.
 
 **Navigation Apps**
+
 Google Maps and Waze use AI to predict traffic, suggest the fastest route in real time, and estimate your arrival time based on historical patterns.
 
 **Fraud Detection**
+
 Every time you use your credit card, AI is quietly checking whether the transaction looks normal for you. Unusual patterns trigger alerts that protect your account.
 
 ### The Flip Side: When AI Gets It Wrong
@@ -195,12 +211,15 @@ Think of it like this: a chef knows how to cook. A skill is like handing that ch
 A skill has three things a general prompt doesn't:
 
 **1. A clear purpose**
+
 A skill is designed for one job. "Help me plan a project" is vague. A *project planning skill* knows exactly what questions to ask, what artifacts to produce, and when it's done.
 
 **2. A defined workflow**
+
 Skills follow a sequence. They know what to do first, what to do next, and what "finished" looks like. This means you get the same quality result every time, not just when you ask in exactly the right way.
 
 **3. Reusability**
+
 You write a skill once, and it works for everyone on your team — or just for you, every time you need it. The knowledge is captured in the skill, not lost in a chat history.
 
 ### A Real Example
@@ -271,15 +290,19 @@ Knowing that skills exist is one thing. Knowing *when* and *how* to use them wel
 Reach for a skill when any of these are true:
 
 **You do this task repeatedly.**
+
 If you find yourself writing the same kind of prompt over and over — planning documents, code reviews, user interviews — that's a skill waiting to be built.
 
 **Quality needs to be consistent.**
+
 Skills produce the same structure every time. If the output matters (a client-facing document, a team spec, a test plan), a skill removes the variation that comes from different wordings of the same request.
 
 **The task has multiple steps.**
+
 If getting a good result requires the AI to ask questions first, then do research, then produce output — that's a workflow. Encode it as a skill so you don't have to orchestrate it manually every time.
 
 **You want to share it with others.**
+
 A skill can be saved and shared across a team. Everyone uses the same process. No one has to remember the "magic prompt."
 
 ### When *Not* to Use a Skill
@@ -289,12 +312,15 @@ Not everything needs a skill. For one-off questions, exploratory conversations, 
 ### Tips for Getting the Most from Skills
 
 **Invoke them with context.**
+
 Most skills let you add arguments. "Create a PRD for a mobile onboarding flow for first-time users" gives the skill a head start over just saying "create prd."
 
 **Trust the workflow.**
+
 Skills are designed to ask you what they need. If a skill asks a question that seems obvious, answer it — that information shapes the output in ways that matter.
 
 **Review the output as a collaborator.**
+
 A skill produces a draft, not a final answer. Read it, push back on anything that doesn't fit, and treat it as a starting point for a conversation.
 
 ### Key Takeaway
@@ -339,12 +365,15 @@ This sounds like a small difference. It isn't. Once an AI can take actions — r
 ### The Three Defining Properties of an Agent
 
 **1. It has tools**
+
 An agent has access to a set of capabilities beyond generating text. Common tools include web search, code execution, file reading/writing, and calling external services.
 
 **2. It takes multiple steps**
+
 An agent doesn't just respond to one prompt. It can plan a sequence of actions, execute them one by one, observe the results, and adjust — all before returning a final answer to you.
 
 **3. It has a goal**
+
 Instead of responding to a single message, an agent is given an objective and works toward it. "Research the top five competitors and summarize their pricing pages" is an agent task, not a chatbot task.
 
 ### A Concrete Example
@@ -428,15 +457,19 @@ Agent technology is moving quickly from research labs into everyday software. In
 ### Where Agents Are Being Used Today
 
 **Software development**
+
 Agents can read a codebase, understand a bug report, write a fix, run the tests, and iterate until the tests pass — all without a human guiding each step. Tools like Claude Code work this way.
 
 **Research and analysis**
+
 Give an agent a research question and a list of sources, and it can read dozens of documents, extract relevant information, and produce a structured summary — a task that might take a human analyst hours.
 
 **Customer support**
+
 Agents can look up account information, check order status, process a return, and send a confirmation email — handling the entire support workflow, not just answering a question.
 
 **Personal productivity**
+
 Agents can manage your calendar, draft responses to emails based on context, book travel, and surface the three most important things in your inbox — acting as a genuine executive assistant, not just a smart autocomplete.
 
 ### Multi-Agent Systems
