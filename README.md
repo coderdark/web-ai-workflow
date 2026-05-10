@@ -16,6 +16,8 @@ ApexTuts gives students a place to:
 
 There is no login. Student progress is stored in `localStorage` keyed to an anonymous UUID generated on first visit. The backend serves a read-only class and lesson catalog from a SQLite database.
 
+![ApexTuts site preview](resources/site.png)
+
 ---
 
 ## Tech Stack

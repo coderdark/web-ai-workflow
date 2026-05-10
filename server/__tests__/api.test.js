@@ -22,13 +22,12 @@ describe('GET /api/health', () => {
 });
 
 describe('GET /api/classes', () => {
-  it('returns an array of classes with lesson_count', async () => {
+  it('returns all 3 classes with lesson_count', async () => {
     const res = await request(app).get('/api/classes');
     expect(res.status).toBe(200);
     expect(Array.isArray(res.body)).toBe(true);
-    expect(res.body.length).toBeGreaterThan(0);
-    expect(res.body[0]).toHaveProperty('lesson_count');
-    expect(res.body[0].lesson_count).toBe(3);
+    expect(res.body.length).toBe(3);
+    res.body.forEach((cls) => expect(cls.lesson_count).toBe(3));
   });
 
   it('returns only the featured class when ?featured=1', async () => {
@@ -40,14 +39,38 @@ describe('GET /api/classes', () => {
 });
 
 describe('GET /api/classes/:id', () => {
-  it('returns a class with a lessons array', async () => {
+  it('returns the AI class with a lessons array', async () => {
     const res = await request(app).get('/api/classes/1');
     expect(res.status).toBe(200);
-    expect(res.body).toHaveProperty('title');
+    expect(res.body.title).toBe('Test AI Class');
     expect(Array.isArray(res.body.lessons)).toBe(true);
     expect(res.body.lessons.length).toBe(3);
     expect(res.body.lessons[0]).toHaveProperty('order_idx');
     expect(res.body.lessons[0]).not.toHaveProperty('content');
+  });
+
+  it('returns the "What is a Skill?" class with correct difficulty and lessons', async () => {
+    const res = await request(app).get('/api/classes/2');
+    expect(res.status).toBe(200);
+    expect(res.body.title).toBe('What is a Skill?');
+    expect(res.body.difficulty).toBe('Beginner');
+    expect(res.body.lessons.length).toBe(3);
+    const titles = res.body.lessons.map((l) => l.title);
+    expect(titles).toContain('Skills: Giving AI a Toolbox');
+    expect(titles).toContain('How Skills Work Under the Hood');
+    expect(titles).toContain('Using Skills Effectively');
+  });
+
+  it('returns the "What is an Agent?" class with correct difficulty and lessons', async () => {
+    const res = await request(app).get('/api/classes/3');
+    expect(res.status).toBe(200);
+    expect(res.body.title).toBe('What is an Agent?');
+    expect(res.body.difficulty).toBe('Intermediate');
+    expect(res.body.lessons.length).toBe(3);
+    const titles = res.body.lessons.map((l) => l.title);
+    expect(titles).toContain('From Chatbot to Agent: What Changed');
+    expect(titles).toContain('How an Agent Thinks and Acts');
+    expect(titles).toContain('Agents in the Real World');
   });
 
   it('returns 404 for a non-existent class', async () => {
