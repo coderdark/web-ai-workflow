@@ -70,3 +70,6 @@ __pycache__/
 .temp/
 .tmp/
 *.bak
+
+# SQLite database
+server/grillme.db
